@@ -1,314 +1,339 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-	<title>
-		Validation demo
-	</title>
+    <title>
+        Validation demo
+    </title>
 
-	<link rel="stylesheet" href="style/index.css" type="text/css" />
+    <link rel="stylesheet" href="style/index.css" type="text/css" />
 
-	<script type="text/javascript" src="script/FormControls.js"></script>
-	<script src="script/FormValidators.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script/FormControls.js"></script>
+    <script src="script/FormValidators.js" type="text/javascript"></script>
 
 </head>
+
 <body>
-    <form name="form1" method="post" action="ValidationDemo.htm" id="form1" onsubmit="return JSFormValidator.FormSubmit(this)">
+    <form name="form1" method="post" action="ValidationDemo.htm" id="form1"
+        onsubmit="return JSFormValidator.FormSubmit(this)">
 
 
-    <div class="mainContainer">
-        <h1>
-            Validation demo</h1>
-        <hr />
-        <fieldset>
-            <legend>Personal data:</legend>
-            <div>
+        <div class="mainContainer">
+            <h1>
+                Validation demo</h1>
+            <hr />
+            <fieldset>
+                <legend>Personal data:</legend>
+                <div>
+                    <div class="formrow even">
+                        <div class="label">
+                            Firstname / Initials:</div>
+                        <div class="formfield">
+                            <input name="tbInitials" type="text" id="tbInitials" />
+                        </div>
+                        <div id="RequiredFieldValidator1" class="validator" validatorfor="tbInitials"
+                            validator="required">
+
+                            <span title="This field is mandatory">
+                                <img src="images/error.png" /></span>
+
+                        </div>
+                        <div class="infotext">
+                            Required</div>
+                    </div>
+                    <div class="formrow odd">
+                        <div class="label">
+                            Insertion:</div>
+                        <div class="formfield">
+                            <input name="tbInsertion" type="text" id="tbInsertion" />
+                        </div>
+                    </div>
+                    <div class="formrow even">
+                        <div class="label">
+                            Lastname:</div>
+                        <div class="formfield">
+                            <input name="tbLastName" type="text" id="tbLastName" />
+                        </div>
+                        <div id="RequiredFieldValidator2" class="validator" validatorfor="tbLastName"
+                            validator="required">
+
+                            <span title="This field is mandatory">
+                                <img src="images/error.png" /></span>
+
+                        </div>
+                        <div class="infotext">
+                            Required</div>
+                    </div>
+                    <div class="formrow odd">
+                        <div class="label">
+                            Year of Birth:</div>
+                        <div class="formfield">
+                            <input name="tbBirthYear" type="text" id="tbBirthYear" />
+                        </div>
+                        <div id="RangeValidator1" class="validator" validatorfor="tbBirthYear" validator="range"
+                            rangefrom="1900" rangeto="2008">
+
+                            <span title="Year of birth must be after 1900 and before 2008">
+                                <img src="images/error.png" /></span>
+
+                        </div>
+                        <div class="infotext">
+                            Range between 1900 and 2008</div>
+                    </div>
+                    <div class="formrow even">
+                        <div class="label">
+                            Gender:</div>
+                        <div class="formfield">
+                            <input id="rbGender_0" type="radio" name="rbGender" class="checkbox" value="m" /><label
+                                for="rbGender_0">Male</label></td>
+                            <input id="rbGender_1" type="radio" name="rbGender" class="checkbox" value="f" /><label
+                                for="rbGender_1">Female</label></td>
+                        </div>
+                        <div id="rbGender_validator" class="validator" validator="required" validatorfor="rbGender_0">
+                            <span title="You must specify your gender">
+                                <img src="images/error.png" /></span>
+                        </div>
+                        <div class="infotext">
+                            Required w/ radio type</div>
+                    </div>
+                    <div class="formrow odd">
+                        <div class="label">
+                            Social Security No.:</div>
+                        <div class="formfield">
+                            <input name="tbSocialSecurityNo" type="text" id="tbSocialSecurityNo" />
+                        </div>
+                        <div id="CustomValidator1" class="validator" validatorfor="tbSocialSecurityNo"
+                            eventname="onblur" validator="custom"
+                            ValidationScript="JSFormControls.Elfproef('tbSocialSecurityNo')">
+
+                            <span title="Dit nummer voldoet niet aan de elfproef">
+                                <img src="images/error.png" /></span>
+
+                        </div>
+                        <div class="infotext">
+                            CustomScript w/ onBlur event</div>
+                    </div>
+                    <div class="formrow even">
+                        <div class="label">
+                            Organisation:</div>
+                        <div class="formfield">
+                            <input type="checkbox" class="checkbox" id="cbOrganisation"
+                                onclick="JSFormControls.ToggleOrganisation(this);" />
+                            yes / no
+                        </div>
+                        <div class="infohelp">
+                            (Enables and displays the validation group below)</div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset id="organisationGroup" class="hidden">
+                <legend>Organization data:</legend>
                 <div class="formrow even">
                     <div class="label">
-                        Firstname / Initials:</div>
+                        Name:</div>
                     <div class="formfield">
-                        <input name="tbInitials" type="text" id="tbInitials" />
+                        <input name="tbOrganisationName" type="text" id="tbOrganisationName" />
                     </div>
-                    <div id="RequiredFieldValidator1" class="validator" validatorfor="tbInitials" validator="required">
-	
+                    <div id="RequiredFieldValidator3" class="validator" validatorfor="tbOrganisationName"
+                        validationgroup="organisationGroup" disabled="true" validator="required">
+
                         <span title="This field is mandatory">
                             <img src="images/error.png" /></span>
-                    
-</div>
+
+                    </div>
                     <div class="infotext">
                         Required</div>
                 </div>
                 <div class="formrow odd">
                     <div class="label">
-                        Insertion:</div>
+                        Address:</div>
                     <div class="formfield">
-                        <input name="tbInsertion" type="text" id="tbInsertion" />
+                        <input name="tbOrganisationAddress" type="text" id="tbOrganisationAddress" />
                     </div>
-                </div>
-                <div class="formrow even">
-                    <div class="label">
-                        Lastname:</div>
-                    <div class="formfield">
-                        <input name="tbLastName" type="text" id="tbLastName" />
-                    </div>
-                    <div id="RequiredFieldValidator2" class="validator" validatorfor="tbLastName" validator="required">
-	
+                    <div id="RequiredFieldValidator4" class="validator" validatorfor="tbOrganisationAddress"
+                        validationgroup="organisationGroup" disabled="true" validator="required">
+
                         <span title="This field is mandatory">
                             <img src="images/error.png" /></span>
-                    
-</div>
+
+                    </div>
                     <div class="infotext">
                         Required</div>
                 </div>
-                <div class="formrow odd">
-                    <div class="label">
-                        Year of Birth:</div>
-                    <div class="formfield">
-                        <input name="tbBirthYear" type="text" id="tbBirthYear" />
-                    </div>
-                    <div id="RangeValidator1" class="validator" validatorfor="tbBirthYear" validator="range" rangefrom="1900" rangeto="2008">
-	
-                        <span title="Year of birth must be after 1900 and before 2008">
-                            <img src="images/error.png" /></span>
-                    
-</div>
-                    <div class="infotext">
-                        Range between 1900 and 2008</div>
-                </div>
                 <div class="formrow even">
                     <div class="label">
-                        Gender:</div>
+                        Zipcode:</div>
                     <div class="formfield">
-                        <input id="rbGender_0" type="radio" name="rbGender" class="checkbox" value="m" /><label
-                            for="rbGender_0">Male</label></td>
-                        <input id="rbGender_1" type="radio" name="rbGender" class="checkbox" value="f" /><label
-                            for="rbGender_1">Female</label></td>
+                        <input name="tbOrganisationZipcode" type="text" id="tbOrganisationZipcode" />
                     </div>
-                    <div id="rbGender_validator" class="validator" validator="required" validatorfor="rbGender_0">
-                        <span title="You must specify your gender">
+                    <div id="RegularExpressionValidator1" class="validator" validatorfor="tbOrganisationZipcode"
+                        validationgroup="organisationGroup" disabled="true" validator="regExp"
+                        validationexpression="^[1-9]{1}[0-9]{3}( )?(\S){2}$">
+
+                        <span title="The zipcode has an invalid format (e.g.: 1234 AA)">
                             <img src="images/error.png" /></span>
+
                     </div>
                     <div class="infotext">
-                        Required w/ radio type</div>
+                        Regular Expression</div>
                 </div>
                 <div class="formrow odd">
                     <div class="label">
-                        Social Security No.:</div>
+                        Email address:</div>
                     <div class="formfield">
-                        <input name="tbSocialSecurityNo" type="text" id="tbSocialSecurityNo" />
+                        <input name="tbEmailAddress" type="text" id="tbEmailAddress" />
                     </div>
-                    <div id="CustomValidator1" class="validator" validatorfor="tbSocialSecurityNo" eventname="onblur" validator="custom" ValidationScript="JSFormControls.Elfproef('tbSocialSecurityNo')">
-	
-                        <span title="Dit nummer voldoet niet aan de elfproef">
+                    <div id="RegularExpressionValidator2" class="validator" validatorfor="tbEmailAddress"
+                        validationgroup="organisationGroup" disabled="true" validator="regExp"
+                        validationexpression="^(([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?))?$">
+
+                        <span title="The email address has an invalid format (e.g.: ericvf@microsoft.com)">
                             <img src="images/error.png" /></span>
-                    
-</div>
+
+                    </div>
                     <div class="infotext">
-                        CustomScript w/ onBlur event</div>
+                        Regular Expression</div>
                 </div>
                 <div class="formrow even">
                     <div class="label">
-                        Organisation:</div>
+                        Country:</div>
                     <div class="formfield">
-                        <input type="checkbox" class="checkbox" id="cbOrganisation" onclick="JSFormControls.ToggleOrganisation(this);" />
+                        <select name="ddlCountry" id="ddlCountry">
+                            <option value="">Please specify</option>
+                            <option value="NL">The Netherlands</option>
+                            <option value="UK">United Kingdom</option>
+
+                        </select>
+                    </div>
+                    <div id="RequiredFieldValidator5" class="validator" validatorfor="ddlCountry"
+                        validationgroup="organisationGroup" disabled="true" validator="required">
+
+                        <span title="Please specify a country">
+                            <img src="images/error.png" /></span>
+
+                    </div>
+                    <div class="infotext">
+                        Required w/ select type</div>
+                </div>
+                <div class="formrow odd">
+                    <div class="label">
+                        Mail subscription:</div>
+                    <div class="formfield">
+                        <input type="checkbox" class="checkbox" id="cbMailingList"
+                            onclick="JSFormValidator.ChangeValidationGroup(this.form, 'emailGroup', this.checked);" />
                         yes / no
                     </div>
+                    <div id="RequiredFieldValidator6" class="validator" validatorfor="tbEmailAddress"
+                        validationgroup="emailGroup" disabled="true" validator="required">
+
+                        <span title="You need to provide an email address in order to subscribe to the mailing list">
+                            <img src="images/error.png" /></span>
+
+                    </div>
                     <div class="infohelp">
-                        (Enables and displays the validation group below)</div>
+                        (Enables the validator for the email address field above)</div>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset id="organisationGroup" class="hidden">
-            <legend>Organization data:</legend>
-            <div class="formrow even">
-                <div class="label">
-                    Name:</div>
-                <div class="formfield">
-                    <input name="tbOrganisationName" type="text" id="tbOrganisationName" />
+            </fieldset>
+            <fieldset>
+                <legend>User data:</legend>
+                <div class="formrow even">
+                    <div class="label">
+                        Username:</div>
+                    <div class="formfield">
+                        <input name="tbUsername" type="text" id="tbUsername" />
+                    </div>
+                    <div id="tbUsername_validator" class="validator" validator="required" validatorfor="tbUsername">
+                        <span title="Gebruikersnaam is een verplicht veld">
+                            <img src="images/error.png" /></span>
+                    </div>
+                    <div class="infotext">
+                        Required</div>
                 </div>
-                <div id="RequiredFieldValidator3" class="validator" validatorfor="tbOrganisationName" validationgroup="organisationGroup" disabled="true" validator="required">
-	
-                    <span title="This field is mandatory">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required</div>
-            </div>
-            <div class="formrow odd">
-                <div class="label">
-                    Address:</div>
-                <div class="formfield">
-                    <input name="tbOrganisationAddress" type="text" id="tbOrganisationAddress" />
-                </div>
-                <div id="RequiredFieldValidator4" class="validator" validatorfor="tbOrganisationAddress" validationgroup="organisationGroup" disabled="true" validator="required">
-	
-                    <span title="This field is mandatory">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required</div>
-            </div>
-            <div class="formrow even">
-                <div class="label">
-                    Zipcode:</div>
-                <div class="formfield">
-                    <input name="tbOrganisationZipcode" type="text" id="tbOrganisationZipcode" />
-                </div>
-                <div id="RegularExpressionValidator1" class="validator" validatorfor="tbOrganisationZipcode" validationgroup="organisationGroup" disabled="true" validator="regExp" validationexpression="^[1-9]{1}[0-9]{3}( )?(\S){2}$">
-	
-                    <span title="The zipcode has an invalid format (e.g.: 1234 AA)">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Regular Expression</div>
-            </div>
-            <div class="formrow odd">
-                <div class="label">
-                    Email address:</div>
-                <div class="formfield">
-                    <input name="tbEmailAddress" type="text" id="tbEmailAddress" />
-                </div>
-                <div id="RegularExpressionValidator2" class="validator" validatorfor="tbEmailAddress" validationgroup="organisationGroup" disabled="true" validator="regExp" validationexpression="^(([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?))?$">
-	
-                    <span title="The email address has an invalid format (e.g.: ericvf@microsoft.com)">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Regular Expression</div>
-            </div>
-            <div class="formrow even">
-                <div class="label">
-                    Country:</div>
-                <div class="formfield">
-                    <select name="ddlCountry" id="ddlCountry">
-	<option value="">Please specify</option>
-	<option value="NL">The Netherlands</option>
-	<option value="UK">United Kingdom</option>
+                <div class="formrow odd">
+                    <div class="label">
+                        Password:</div>
+                    <div class="formfield">
+                        <input name="tbPassword" type="password" id="tbPassword" />
+                    </div>
+                    <div id="RequiredFieldValidator7" class="validator" validatorfor="tbPassword" validator="required">
 
-</select>
-                </div>
-                <div id="RequiredFieldValidator5" class="validator" validatorfor="ddlCountry" validationgroup="organisationGroup" disabled="true" validator="required">
-	
-                    <span title="Please specify a country">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required w/ select type</div>
-            </div>
-            <div class="formrow odd">
-                <div class="label">
-                    Mail subscription:</div>
-                <div class="formfield">
-                    <input type="checkbox" class="checkbox" id="cbMailingList" onclick="JSFormValidator.ChangeValidationGroup(this.form, 'emailGroup', this.checked);" />
-                    yes / no
-                </div>
-                <div id="RequiredFieldValidator6" class="validator" validatorfor="tbEmailAddress" validationgroup="emailGroup" disabled="true" validator="required">
-	
-                    <span title="You need to provide an email address in order to subscribe to the mailing list">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infohelp">
-                    (Enables the validator for the email address field above)</div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>User data:</legend>
-            <div class="formrow even">
-                <div class="label">
-                    Username:</div>
-                <div class="formfield">
-                    <input name="tbUsername" type="text" id="tbUsername" />
-                </div>
-                <div id="tbUsername_validator" class="validator" validator="required" validatorfor="tbUsername">
-                    <span title="Gebruikersnaam is een verplicht veld">
-                        <img src="images/error.png" /></span>
-                </div>
-                <div class="infotext">
-                    Required</div>
-            </div>
-            <div class="formrow odd">
-                <div class="label">
-                    Password:</div>
-                <div class="formfield">
-                    <input name="tbPassword" type="password" id="tbPassword" />
-                </div>
-                <div id="RequiredFieldValidator7" class="validator" validatorfor="tbPassword" validator="required">
-	
-                    <span title="This field is mandatory">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required</div>
-            </div>
-            <div class="formrow even">
-                <div class="label">
-                    Password (verification):</div>
-                <div class="formfield">
-                    <input name="tbPasswordConfirm" type="password" id="tbPasswordConfirm" />
-                </div>
-                <div id="CompareValidator1" class="validator" validatorfor="tbPassword" validator="compare" compareto="tbPasswordConfirm">
-	
-                    <span title="Passwords need to be exact match">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Compare w/ previous password field</div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Additional data:</legend>
-            <div class="formrow even high">
-                <div class="label">
-                    Comments (<span id="commentsCharsLeft">500</span> characters left):</div>
-                <div class="formfield">
-                    <textarea name="tbComments" rows="2" cols="20" id="tbComments" onkeyup="JSFormControls.Comments_OnkeyUp();"></textarea>
-                </div>
-                <div id="RequiredFieldValidator8" class="validator" validatorfor="tbComments" validator="required">
-	
-                    <span title="This field is mandatory">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required w/ existing onkeyup event</div>
-            </div>
-            <div class="formrow odd">
-                <div class="label">
-                    Accept terms:</div>
-                <div class="formfield">
-                    <span class="checkbox"><input id="cbAcceptance" type="checkbox" name="cbAcceptance" /><label for="cbAcceptance">I accept</label></span>
-                </div>
-                <div id="RequiredFieldValidator9" class="validator" validatorfor="cbAcceptance" validator="required">
-	
-                    <span title="You need to accept the terms in order to continue">
-                        <img src="images/error.png" /></span>
-                
-</div>
-                <div class="infotext">
-                    Required w/ checkbox type</div>
-            </div>
-        </fieldset>
-        <hr />
-        <div id="ValidationSummary1" style="color:Red;">
+                        <span title="This field is mandatory">
+                            <img src="images/error.png" /></span>
 
-</div>
-        <div class="buttons">
-            <button type="reset">
-                Cancel</button>
-            <button type="submit">
-                Submit</button>
+                    </div>
+                    <div class="infotext">
+                        Required</div>
+                </div>
+                <div class="formrow even">
+                    <div class="label">
+                        Password (verification):</div>
+                    <div class="formfield">
+                        <input name="tbPasswordConfirm" type="password" id="tbPasswordConfirm" />
+                    </div>
+                    <div id="CompareValidator1" class="validator" validatorfor="tbPassword" validator="compare"
+                        compareto="tbPasswordConfirm">
+
+                        <span title="Passwords need to be exact match">
+                            <img src="images/error.png" /></span>
+
+                    </div>
+                    <div class="infotext">
+                        Compare w/ previous password field</div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Additional data:</legend>
+                <div class="formrow even high">
+                    <div class="label">
+                        Comments (<span id="commentsCharsLeft">500</span> characters left):</div>
+                    <div class="formfield">
+                        <textarea name="tbComments" rows="2" cols="20" id="tbComments"
+                            onkeyup="JSFormControls.Comments_OnkeyUp();"></textarea>
+                    </div>
+                    <div id="RequiredFieldValidator8" class="validator" validatorfor="tbComments" validator="required">
+
+                        <span title="This field is mandatory">
+                            <img src="images/error.png" /></span>
+
+                    </div>
+                    <div class="infotext">
+                        Required w/ existing onkeyup event</div>
+                </div>
+                <div class="formrow odd">
+                    <div class="label">
+                        Accept terms:</div>
+                    <div class="formfield">
+                        <span class="checkbox"><input id="cbAcceptance" type="checkbox" name="cbAcceptance" /><label
+                                for="cbAcceptance">I accept</label></span>
+                    </div>
+                    <div id="RequiredFieldValidator9" class="validator" validatorfor="cbAcceptance"
+                        validator="required">
+
+                        <span title="You need to accept the terms in order to continue">
+                            <img src="images/error.png" /></span>
+
+                    </div>
+                    <div class="infotext">
+                        Required w/ checkbox type</div>
+                </div>
+            </fieldset>
+            <hr />
+            <div id="ValidationSummary1" style="color:Red;">
+
+            </div>
+            <div class="buttons">
+                <button type="reset">
+                    Cancel</button>
+                <button type="submit">
+                    Submit</button>
+            </div>
         </div>
-    </div>
-    
-<div>
 
-</div></form>
+        <div>
+
+        </div>
+    </form>
 </body>
+
 </html>
